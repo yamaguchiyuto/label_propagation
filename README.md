@@ -1,4 +1,4 @@
-Implementations of label propagation like algorithms
+# Implementations of label propagation like algorithms
 
 This is a set of scikit-learn compatible implementations of label propagation (LP) like algorithms.
 One can easily grid search and cross validate models using utils in scikit-learn.
