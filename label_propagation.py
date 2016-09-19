@@ -172,9 +172,9 @@ class HMN(Base):
         degrees = self.graph.sum(axis=0).A[0]
         degrees[degrees==0] += 1  # Avoid division by 0
         D = sparse.diags((1.0/degrees),offsets=0)
-        P = D.dot(self.graph)
+        P = D.dot(self.graph).tolil()
         P[self.x_] = 0
-        return P
+        return P.tocsr()
 
     def _build_base_matrix(self):
         n_samples = self.graph.shape[0]
@@ -224,7 +224,7 @@ class PARW(Base):
         Lamb = sparse.diags(self.lamb,shape=(n_samples,n_samples), offsets=0)
         return Z.dot(Lamb).dot(B)
 
-class OMNIProp(Base):
+class OMNI(Base):
     """OMNI-Prop for GBSSL
 
     Parameters
@@ -247,7 +247,7 @@ class OMNIProp(Base):
     """
 
     def __init__(self,graph=None,lamb=1.0,max_iter=30):
-        super(OMNIProp,self).__init__(graph,max_iter)
+        super(OMNI,self).__init__(graph,max_iter)
         self.lamb = lamb
 
     def _build_propagation_matrix(self):

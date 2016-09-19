@@ -11,6 +11,104 @@ One can easily grid search and cross validate models using utils in scikit-learn
 * OMNI-Prop (OMNIProp) [Yamaguchi+, AAAI15]
 * Confidence-Aware Modulated Label Propagation (CAMLP) [Yamaguchi+, SDM16]
 
+## Usage
+```
+% python main.py -h
+usage: main.py [-h] {hmn,lgc,parw,omni,camlp} ...
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+subcommands:
+  {hmn,lgc,parw,omni,camlp}
+                        sub-command help
+    hmn                 HMN
+    lgc                 LGC
+    parw                PARW
+    omni                OMNI
+    camlp               CAMLP
+```
+
+```hmn
+$ python main.py hmn -h
+usage: main.py hmn [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g GRAPHFILE, --graphfile GRAPHFILE
+                        input graph file
+  -l LABELFILE, --labelfile LABELFILE
+                        input label file
+  -o [OUTFILE], --outfile [OUTFILE]
+                        output file (default=STDOUT)
+```
+
+```lgc
+$ python main.py lgc -h
+usage: main.py lgc [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
+                   [--alpha [ALPHA]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g GRAPHFILE, --graphfile GRAPHFILE
+                        input graph file
+  -l LABELFILE, --labelfile LABELFILE
+                        input label file
+  -o [OUTFILE], --outfile [OUTFILE]
+                        output file (default=STDOUT)
+  --alpha [ALPHA]       alpha (default=0.99)
+```
+
+```parw
+$ python main.py parw -h
+usage: main.py parw [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
+                    [--lamb [LAMB]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g GRAPHFILE, --graphfile GRAPHFILE
+                        input graph file
+  -l LABELFILE, --labelfile LABELFILE
+                        input label file
+  -o [OUTFILE], --outfile [OUTFILE]
+                        output file (default=STDOUT)
+  --lamb [LAMB]         lambda (default=1.0)
+```
+
+```omni
+$ python main.py omni -h
+usage: main.py omni [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
+                    [--lamb [LAMB]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g GRAPHFILE, --graphfile GRAPHFILE
+                        input graph file
+  -l LABELFILE, --labelfile LABELFILE
+                        input label file
+  -o [OUTFILE], --outfile [OUTFILE]
+                        output file (default=STDOUT)
+  --lamb [LAMB]         lambda (default=1.0)
+```
+
+```camlp
+$ python main.py camlp -h
+usage: main.py camlp [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
+                     [--beta [BETA]] [--modulationfile [MODULATIONFILE]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g GRAPHFILE, --graphfile GRAPHFILE
+                        input graph file
+  -l LABELFILE, --labelfile LABELFILE
+                        input label file
+  -o [OUTFILE], --outfile [OUTFILE]
+                        output file (default=STDOUT)
+  --beta [BETA]         beta (default=0.1)
+  --modulationfile [MODULATIONFILE]
+                        modulation matrix file (default: use identity)
+```
+
 ## Example
 
 ```
@@ -55,3 +153,4 @@ In [14]: x_test = np.array([0,3]) # to predict labels of node 0 and node 3
 In [15]: clf.predict(x_test) # scikit-learn compatible
 Out[15]: array([0, 1])
 ```
+
