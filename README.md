@@ -20,14 +20,14 @@ python main.py hmn -g sample.edgelist -l sample.label -o sample.output
 
 ### Inputs
 ```
-$ cat sample.edgelist
+$ cat sample.edgelist  # [src node id] [dst node id]
 0 1
 1 2
 2 3
-$ cat sample.label
+$ cat sample.label  # [node id] [label id]
 1 0
 2 1
-$ cat sample.modulation
+$ cat sample.modulation # KxK matrix (K: no. of labels)
 0 1
 1 0
 ```
