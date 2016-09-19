@@ -29,7 +29,9 @@ subcommands:
     camlp               CAMLP
 ```
 
-```hmn
+### HMN
+
+```
 $ python main.py hmn -h
 usage: main.py hmn [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
 
@@ -43,7 +45,9 @@ optional arguments:
                         output file (default=STDOUT)
 ```
 
-```lgc
+### LGC
+
+```
 $ python main.py lgc -h
 usage: main.py lgc [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
                    [--alpha [ALPHA]]
@@ -59,7 +63,9 @@ optional arguments:
   --alpha [ALPHA]       alpha (default=0.99)
 ```
 
-```parw
+### PARW
+
+```
 $ python main.py parw -h
 usage: main.py parw [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
                     [--lamb [LAMB]]
@@ -75,7 +81,9 @@ optional arguments:
   --lamb [LAMB]         lambda (default=1.0)
 ```
 
-```omni
+### OMNIProp
+
+```
 $ python main.py omni -h
 usage: main.py omni [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
                     [--lamb [LAMB]]
@@ -91,7 +99,9 @@ optional arguments:
   --lamb [LAMB]         lambda (default=1.0)
 ```
 
-```camlp
+### CAMLP
+
+```
 $ python main.py camlp -h
 usage: main.py camlp [-h] -g GRAPHFILE -l LABELFILE [-o [OUTFILE]]
                      [--beta [BETA]] [--modulationfile [MODULATIONFILE]]
