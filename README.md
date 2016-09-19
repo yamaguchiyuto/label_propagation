@@ -12,21 +12,24 @@ One can easily grid search and cross validate models using utils in scikit-learn
 * Confidence-Aware Modulated Label Propagation (CAMLP) [Yamaguchi+, SDM16]
 
 ## Usage
+
+### Example
 ```
-% python main.py -h
-usage: main.py [-h] {hmn,lgc,parw,omni,camlp} ...
+python main.py hmn -g sample.edgelist -l sample.label -o sample.output
+```
 
-optional arguments:
-  -h, --help            show this help message and exit
-
-subcommands:
-  {hmn,lgc,parw,omni,camlp}
-                        sub-command help
-    hmn                 HMN
-    lgc                 LGC
-    parw                PARW
-    omni                OMNI
-    camlp               CAMLP
+### Inputs
+```
+$ cat sample.edgelist
+0 1
+1 2
+2 3
+$ cat sample.label
+1 0
+2 1
+$ cat sample.modulation
+0 1
+1 0
 ```
 
 ### HMN
@@ -119,7 +122,7 @@ optional arguments:
                         modulation matrix file (default: use identity)
 ```
 
-## Example
+## Usage in code
 
 ```
 In [1]: import numpy as np

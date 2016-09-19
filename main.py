@@ -5,34 +5,15 @@ from scipy.sparse import csr_matrix
 from label_propagation import HMN,LGC,PARW,OMNI,CAMLP
 
 def read_graphfile(f):
-    row = []
-    col = []
-    max_nid = -1
-    for line in f:
-        src, dst = map(int, line.rstrip().split(' '))
-        row.append(src)
-        col.append(dst)
-        row.append(dst)
-        col.append(src)
-        if max_nid < src: max_nid = src
-        if max_nid < dst: max_nid = dst
+    graph_data = np.genfromtxt(f, delimiter=' ', dtype=int)
+    row = np.hstack([graph_data[:,0], graph_data[:,1]])
+    col = np.hstack([graph_data[:,1], graph_data[:,0]])
+    max_nid = np.max(row)
     return csr_matrix((np.ones(len(row)), (row,col)), shape=(max_nid+1,max_nid+1))
 
 def read_labelfile(f):
-    x = []
-    y = []
-    for line in f:
-        nid,lid = map(int, line.strip().split(' '))
-        x.append(nid)
-        y.append(lid)
-    return (np.array(x), np.array(y))
-
-def read_modulationfile(f):
-    if f==None: return None
-    H = []
-    for line in f:
-        H.append(map(float, line.strip().split(' ')))
-    return np.array(H)
+    label_data = np.genfromtxt(f, delimiter=' ', dtype=int)
+    return label_data[:,0],label_data[:,1]
 
 p = argparse.ArgumentParser()
 subparsers = p.add_subparsers(help='sub-command help', title='subcommands', dest='subparser_name')
@@ -77,8 +58,7 @@ elif args.subparser_name == 'parw':
 elif args.subparser_name == 'omni':
     clf = OMNI(graph=G, lamb=args.lamb)
 elif args.subparser_name == 'camlp':
-    H = read_modulationfile(args.modulationfile)
-    print H
+    H = np.genfromtxt(args.modulationfile, delimiter=' ')
     clf = CAMLP(graph=G, beta=args.beta, H=H)
 
 clf.fit(x,y)
@@ -87,4 +67,3 @@ predicted = clf.predict_proba(np.arange(G.shape[0]))
 print >>args.outfile, '"Node ID","Predicted label ID",%s' % ','.join(['"Prob %s"'%v for v in range(predicted.shape[1])])
 for i in range(predicted.shape[0]):
     print >>args.outfile, "%s,%s,%s" % (i,predicted[i].argmax(),','.join(map(str,predicted[i])))
-
