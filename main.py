@@ -64,6 +64,6 @@ elif args.subparser_name == 'camlp':
 clf.fit(x,y)
 predicted = clf.predict_proba(np.arange(G.shape[0]))
 
-print >>args.outfile, '"Node ID","Predicted label ID",%s' % ','.join(['"Prob %s"'%v for v in range(predicted.shape[1])])
+print >>args.outfile, 'Node ID,Predicted label ID,%s' % ','.join(['Prob %s'%v for v in range(predicted.shape[1])])
 for i in range(predicted.shape[0]):
     print >>args.outfile, "%s,%s,%s" % (i,predicted[i].argmax(),','.join(map(str,predicted[i])))
